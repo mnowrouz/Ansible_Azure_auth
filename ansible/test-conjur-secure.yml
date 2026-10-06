@@ -1,0 +1,22 @@
+---
+- name: Test CyberArk Secrets Manager secret retrieval
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Retrieve password from Secrets Manager
+      ansible.builtin.set_fact:
+        conjur_password: >-
+          {{ lookup(
+            'cyberark.conjur.conjur_variable',
+            'data/vault/conjur-ansible-demo/Database-MySQL-TEST-administrator/password'
+          ) }}
+      no_log: true
+
+    - name: Confirm credential retrieval
+      ansible.builtin.debug:
+        msg: "SUCCESS: Credential was retrieved from CyberArk Secrets Manager."
+      when:
+        - conjur_password is defined
+        - conjur_password | length > 0

@@ -1,0 +1,14 @@
+---
+- name: Test CyberArk Secrets Manager Azure authentication
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Retrieve username from Secrets Manager
+      ansible.builtin.debug:
+        msg: >-
+          {{ lookup(
+            'cyberark.conjur.conjur_variable',
+            'data/vault/conjur-ansible-demo/Database-MySQL-TEST-administrator/username'
+          ) }}

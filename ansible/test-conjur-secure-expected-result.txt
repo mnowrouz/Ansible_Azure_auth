@@ -1,0 +1,4 @@
+TASK [Confirm credential retrieval]
+ok: [localhost] => {
+    "msg": "SUCCESS: Credential was retrieved from CyberArk Secrets Manager."
+}

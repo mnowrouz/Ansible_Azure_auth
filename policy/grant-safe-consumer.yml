@@ -1,0 +1,10 @@
+#load syntax: conjur policy load -b conjur -f grant-safe-consumer.yml
+
+---
+# Grants the Azure-hosted Ansible workload access to secrets
+# synchronized from the conjur-ansible-demo CyberArk Safe.
+
+- !grant
+  role: !group data/vault/conjur-ansible-demo/delegation/consumers
+  members:
+    - !host data/ansible/azure-demo

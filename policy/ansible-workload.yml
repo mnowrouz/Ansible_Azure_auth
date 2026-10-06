@@ -1,0 +1,9 @@
+#load syntax: conjur policy load -b data -f ansible-workload.yml
+
+---
+- !host
+  id: azure-demo
+  annotations:
+    authn-azure/ansible/resource-group: <AZURE-VM-RESOURCEGROUP-ID>
+    authn-azure/ansible/subscription-id: <AZURE-SUBSCRIPTION-ID>
+    authn-azure/ansible/system-assigned-identity: <AZURE-MANAGED-IDENTITY-OBJECT-ID>

@@ -1,0 +1,10 @@
+#load syntax: conjur policy load -b conjur -f grant-authn.yml
+
+---
+# Grants the Azure-hosted Ansible workload permission to use
+# the authn-azure/ansible authenticator.
+
+- !grant
+  role: !group conjur/authn-azure/ansible/apps
+  members:
+    - !host data/ansible/azure-demo
